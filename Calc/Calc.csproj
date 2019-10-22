@@ -72,7 +72,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Сценарии работы.docx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
