@@ -9,20 +9,10 @@ namespace CalculatorCore
     public class Calculator
     {
 
-        public decimal PI { get; } = Math.PI;
-
-        public decimal Get_log(decimal number) => Math.Log(number);
-
-        public decimal Get_sin(decimal angle) => Math.Sin(angle);
-
-        public decimal Get_cos(decimal angle) => Math.Cos(angle);
-
-        public decimal Get_tg(decimal angle) => Math.Tan(angle);
-
-        public decimal Get_ctg(decimal angle) => 1 / Math.Tan(angle);
-
-        public decimal Get_factorial(decimal number)
+        public decimal PI { get; } = (decimal)Math.PI;
+        public decimal Factorial(decimal number)
         {
+            if (number < 0) return 0;//не хотелось чтобы калькулятор ломался
             try
             {
                 if (number == 0)
@@ -31,22 +21,26 @@ namespace CalculatorCore
                 }
                 else
                 {
-                    return number * Get_factorial(number - 1);
+                    return number * Factorial(number - 1);
                 }
             }
             catch (Exception StackOverFlow)
             {
-                Console.WriteLine("Факториала отрицательного числа не существует!");
-                Console.WriteLine($"Отчет: {StackOverFlow.Message} \n {StackOverFlow.Source}");
+                //Console.WriteLine("Факториала отрицательного числа не существует!");
+                //Console.WriteLine($"Отчет: {StackOverFlow.Message} \n {StackOverFlow.Source}");
+                return 0;
             }
         }
-        public decimal Get_sqrt(decimal number) => Math.Sqrt(number);
+        public decimal Sqrt(decimal number)
+        {
+            throw new NotImplementedException();
+        }
 
-        public decimal ConversionGR(decimal degree) => degree * PI / 180;
+        public decimal ToRadian(decimal degree) => degree * PI / 180;
 
-        public decimal ConversionRG(decimal radian) => radian * 180 / PI;
+        public decimal ToDegree(decimal radian) => radian * 180 / PI;
 
-        public decimal Get_persent(decimal number, decimal persent) => number / 100 * persent;
+        public decimal ToPercent(decimal number, decimal percent) => number / 100 * percent;
 
         public decimal Add(decimal x, decimal y) => x + y;
 
@@ -56,11 +50,40 @@ namespace CalculatorCore
 
         public decimal Div(decimal x, decimal y) => x / y;
 
-        public decimal Pow(decimal number, decimal power) => Math.Pow(number, power);
+        public decimal Sqr(decimal x, decimal y) => x *x;
 
-        public decimal MoreSQRT(decimal number, decimal power)
+        public decimal Pow(decimal number, decimal power)
         {
-            return 0;
+            throw new NotImplementedException();
+        }
+        public decimal Root(decimal number, decimal power)
+        {
+             throw new NotImplementedException();
+        }
+
+        public decimal Log(decimal number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal Sin(decimal angle)
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal Cos(decimal angle)
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal Tan(decimal angle)
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal Ctg(decimal angle)
+        {
+            throw new NotImplementedException();
         }
     }
 }

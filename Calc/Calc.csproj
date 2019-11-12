@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functionality\IView.cs" />
     <Compile Include="Presenters\CalcPresenter.cs" />
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>

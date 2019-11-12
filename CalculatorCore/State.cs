@@ -8,18 +8,25 @@ namespace CalculatorCore
 {
     class State
     {
-
+        public Stack<decimal> Memory { get; set; }
         public State()
         {
-
+            Memory = new Stack<decimal>();
         }
 
-        public Stack<decimal> Memory { get; set; }
+        public void Reset()
+        {
+            Memory.Clear();
+        }
 
         public void AddToMem(decimal number)
         {
             Memory.Push(number);
         }
-        public decimal ExtractFromMem() => Memory.Pop();
+        public decimal ExtractFromMem()
+        {
+            //чтобы не извлекать из стэка если он пустой
+            return (Memory.Count > 0)? Memory.Pop():0;
+        }
     }
 }
