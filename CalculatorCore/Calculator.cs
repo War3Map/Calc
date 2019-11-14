@@ -12,24 +12,13 @@ namespace CalculatorCore
         public decimal PI { get; } = (decimal)Math.PI;
         public decimal Factorial(decimal number)
         {
-            if (number < 0) return 0;//не хотелось чтобы калькулятор ломался
-            try
+            if (number < 0) return 0;//не хотелось чтобы калькулятор ломался  // Э* Тут по идее тоже, надо выдать юзеру сообщение, что так нельзя сделать
+            else if (number == 0) return 1;
+            else
             {
-                if (number == 0)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return number * Factorial(number - 1);
-                }
+                return number * Factorial(number - 1);
             }
-            catch (Exception StackOverFlow)
-            {
-                //Console.WriteLine("Факториала отрицательного числа не существует!");
-                //Console.WriteLine($"Отчет: {StackOverFlow.Message} \n {StackOverFlow.Source}");
-                return 0;
-            }
+ 
         }
         public decimal Sqrt(decimal number)
         {
