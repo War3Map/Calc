@@ -87,6 +87,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CalculatorCore\CalcCore.csproj">
+      <Project>{ee7839c7-f6d0-45ef-ad10-17753709f61a}</Project>
+      <Name>CalcCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

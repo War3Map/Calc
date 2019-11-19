@@ -16,6 +16,7 @@ namespace Calc
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //здесь дб IoC
             Application.Run(new MainView());
         }
     }

@@ -7,13 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Calc.Presenters;
+using Calc.Functionality;
 
 namespace Calc
 {
-    public partial class MainView : Form
+    public partial class MainView : Form, IView
     {
+
+        CalcPresenter presenter;
         public MainView()
         {
+            //здесь дб IoC
+            presenter = new CalcPresenter(this);
             InitializeComponent();
         }
 
@@ -150,6 +156,15 @@ namespace Calc
                 MainDisplay.SelectionStart = MainDisplay.Text.Length; //курсор в конец
             }
         }
-        
+
+        public object GetData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateData(object data)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

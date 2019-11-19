@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Calc.Functionality
 {
-    interface IView
+    public interface IView
     {
+
+        void Show();
+        object GetData();
+        void UpdateData(object data);
     }
 }
