@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalculatorCore
 {
-    class State
+    public class State
     {
         public Stack<decimal> Memory { get; set; }
         public State()

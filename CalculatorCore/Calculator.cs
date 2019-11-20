@@ -40,15 +40,15 @@ namespace CalculatorCore
         public decimal Div(decimal x, decimal y) => x / y;
 
         public decimal SquaredNumber(decimal x) => x * x;
-
-        public decimal Pow(decimal number, decimal power)
-        {
-            throw new NotImplementedException();
-        }
-        public double SquareRoot(double number) => Math.Sqrt(number);
-        public double Root(double number, double power) => Math.Pow(number, 1 / power);
-
         //Тут поменял возвращаемое значение и аргументы метода на double, геометрию на decimal не переведем
+        //Быстрее родного алгоритма Pow, пока не получилось сделать, почему ты решил, что он медленно работает?
+        //Тебе удовалось сделать быстрее?
+        public double Pow(double number, double power) => Math.Pow(number, power);
+
+        public double SquareRoot(double number) => Math.Sqrt(number);
+
+        public double Root(double number, double power) => Math.Pow(number, 1 / power);
+        
         public double Log(double number) => Math.Log(number);
 
         public double Sin(double angle) => Math.Sin(angle);
