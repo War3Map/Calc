@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using CalculatorCore;
 using Calc.Functionality;
 
-
 namespace Calc.Presenters
 {   
     class CalcPresenter

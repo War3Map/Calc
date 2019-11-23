@@ -39,40 +39,24 @@ namespace CalculatorCore
 
         public decimal Div(decimal x, decimal y) => x / y;
 
-        public decimal Sqr(decimal x, decimal y) => x *x;
+        public decimal SquaredNumber(decimal x) => x * x;
+        //Тут поменял возвращаемое значение и аргументы метода на double, геометрию на decimal не переведем
+        //Быстрее родного алгоритма Pow, пока не получилось сделать, почему ты решил, что он медленно работает?
+        //Тебе удовалось сделать быстрее?
+        public double Pow(double number, double power) => Math.Pow(number, power);
 
-        public decimal Pow(decimal number, decimal power)
-        {
-            throw new NotImplementedException();
-        }
-        public decimal Root(decimal number, decimal power)
-        {
-             throw new NotImplementedException();
-        }
+        public double SquareRoot(double number) => Math.Sqrt(number);
 
-        public decimal Log(decimal number)
-        {
-            throw new NotImplementedException();
-        }
+        public double Root(double number, double power) => Math.Pow(number, 1 / power);
+        
+        public double Log(double number) => Math.Log(number);
 
-        public decimal Sin(decimal angle)
-        {
-            throw new NotImplementedException();
-        }
+        public double Sin(double angle) => Math.Sin(angle);
 
-        public decimal Cos(decimal angle)
-        {
-            throw new NotImplementedException();
-        }
+        public double Cos(double angle) => Math.Cos(angle);
 
-        public decimal Tan(decimal angle)
-        {
-            throw new NotImplementedException();
-        }
+        public double Tan(double angle) => Math.Tan(angle);
 
-        public decimal Ctg(decimal angle)
-        {
-            throw new NotImplementedException();
-        }
+        public double Ctg(double angle) => 1 / Math.Tan(angle);
     }
 }
