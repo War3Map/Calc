@@ -5,14 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using CalculatorCore;
 using Calc.Functionality;
+using Ninject.Modules;
+using Ninject;
 
 
 namespace Calc.Presenters
 {   
-    class CalcPresenter
+    class CalcPresenter : NinjectModule
     {
         IView calcView;
         Calculator calc;
+
+        public override void Load()
+        {
+            Bind<IView>().To<MainView>();
+        }
 
         void Compute()
         {           
@@ -21,10 +28,12 @@ namespace Calc.Presenters
 
         object AnalyzeData(object data)
         {
-
-
+            IKernel iocContainer = new StandardKernel();
+            MainView gui = iocContainer.Get<MainView>();
+            data = gui.GetData();
             
-           return 0;
+
+            return 0;
         }
 
         public CalcPresenter(IView calcView)

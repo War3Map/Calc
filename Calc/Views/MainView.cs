@@ -108,6 +108,83 @@ namespace Calc
             MainDisplay.Text += ",";
         }
 
+        private void SQRT_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void NSQRT_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Cosinus_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Sinus_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Cotangent_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Tangent_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Power_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void NPower_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void DecimalLogarifm_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void NaturalLogarfm_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Factorial_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void PI_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void CurrentAddMamory_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void CurrentSubMamory_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void MemorySave_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void MemoryClean_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void MemoryRead_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void CleanEntry_Click(object sender, EventArgs e)
+        {
+            MainDisplay.Text.Remove(MainDisplay.Text.Length - 1);
+        }
+        private void CleanAll_Click(object sender, EventArgs e)
+        {
+            MainDisplay.Text = null;
+
+        }
         private void button10_Click(object sender, EventArgs e)
         {
 
@@ -159,12 +236,12 @@ namespace Calc
 
         public object GetData()
         {
-            throw new NotImplementedException();
+            return MainDisplay.Text;
         }
 
         public void UpdateData(object data)
         {
-            throw new NotImplementedException();
+            MainDisplay.Text = data.ToString();
         }
     }
 }

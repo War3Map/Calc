@@ -340,7 +340,7 @@
             this.MainPannelLayout.Controls.Add(this.Factorial, 1, 4);
             this.MainPannelLayout.Controls.Add(this.NumberOfPI, 1, 5);
             this.MainPannelLayout.Location = new System.Drawing.Point(12, 68);
-            this.MainPannelLayout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MainPannelLayout.Margin = new System.Windows.Forms.Padding(2);
             this.MainPannelLayout.Name = "MainPannelLayout";
             this.MainPannelLayout.RowCount = 6;
             this.MainPannelLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -538,7 +538,7 @@
             // 
             this.NumberOfPI.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NumberOfPI.Location = new System.Drawing.Point(48, 257);
-            this.NumberOfPI.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NumberOfPI.Margin = new System.Windows.Forms.Padding(2);
             this.NumberOfPI.Name = "NumberOfPI";
             this.NumberOfPI.Size = new System.Drawing.Size(42, 52);
             this.NumberOfPI.TabIndex = 76;
