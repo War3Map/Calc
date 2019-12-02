@@ -9,16 +9,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Calc.Presenters;
 using Calc.Functionality;
+using Ninject.Modules;
+using Ninject;
+
 
 namespace Calc
 {
     public partial class MainView : Form, IView
     {
-
         CalcPresenter presenter;
+        (string, string) operatorAndOperand;
+        private string Operation { get; set; }
+
         public MainView()
         {
             //здесь дб IoC
+
             presenter = new CalcPresenter(this);
             InitializeComponent();
         }
@@ -110,7 +116,8 @@ namespace Calc
 
         private void SQRT_Click(object sender, EventArgs e)
         {
-
+            Operation = "SQRT";
+            presenter.Compute();
         }
         private void NSQRT_Click(object sender, EventArgs e)
         {
@@ -144,7 +151,7 @@ namespace Calc
         {
 
         }
-        private void NaturalLogarfm_Click(object sender, EventArgs e)
+        private void NaturalLogarithm_Click(object sender, EventArgs e)
         {
 
         }
@@ -156,11 +163,11 @@ namespace Calc
         {
 
         }
-        private void CurrentAddMamory_Click(object sender, EventArgs e)
+        private void CurrentAddMemory_Click(object sender, EventArgs e)
         {
 
         }
-        private void CurrentSubMamory_Click(object sender, EventArgs e)
+        private void CurrentSubMemory_Click(object sender, EventArgs e)
         {
 
         }
@@ -176,6 +183,10 @@ namespace Calc
         {
 
         }
+        private void MemoryAddRemove_Click(object sender, EventArgs e)
+        {
+
+        }
         private void CleanEntry_Click(object sender, EventArgs e)
         {
             MainDisplay.Text.Remove(MainDisplay.Text.Length - 1);
@@ -186,6 +197,10 @@ namespace Calc
 
         }
         private void button10_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Equally_Click(object sender, EventArgs e)
         {
 
         }
@@ -233,10 +248,15 @@ namespace Calc
                 MainDisplay.SelectionStart = MainDisplay.Text.Length; //курсор в конец
             }
         }
-
-        public object GetData()
+        private void MemoryDisplay_TextChanged(object sender, EventArgs e)
         {
-            return MainDisplay.Text;
+
+        }
+
+        public (string, string) GetData()
+        {
+            operatorAndOperand = (MainDisplay.Text, Operation);
+            return operatorAndOperand;
         }
 
         public void UpdateData(object data)

@@ -95,6 +95,7 @@
             this.MemoryDisplay.ReadOnly = true;
             this.MemoryDisplay.Size = new System.Drawing.Size(339, 23);
             this.MemoryDisplay.TabIndex = 2;
+            this.MemoryDisplay.TextChanged += new System.EventHandler(this.MemoryDisplay_TextChanged);
             // 
             // Comma
             // 
@@ -105,6 +106,7 @@
             this.Comma.TabIndex = 53;
             this.Comma.Text = ",";
             this.Comma.UseVisualStyleBackColor = true;
+            this.Comma.Click += new System.EventHandler(this.Comma_Click);
             // 
             // MemorySave
             // 
@@ -116,6 +118,7 @@
             this.MemorySave.TabIndex = 48;
             this.MemorySave.Text = "MS";
             this.MemorySave.UseVisualStyleBackColor = true;
+            this.MemorySave.Click += new System.EventHandler(this.MemorySave_Click);
             // 
             // Division
             // 
@@ -126,6 +129,7 @@
             this.Division.TabIndex = 45;
             this.Division.Text = "/";
             this.Division.UseVisualStyleBackColor = true;
+            this.Division.Click += new System.EventHandler(this.Division_Click);
             // 
             // Multiplication
             // 
@@ -136,6 +140,7 @@
             this.Multiplication.TabIndex = 44;
             this.Multiplication.Text = "*";
             this.Multiplication.UseVisualStyleBackColor = true;
+            this.Multiplication.Click += new System.EventHandler(this.Multiplication_Click);
             // 
             // Subtraction
             // 
@@ -146,6 +151,7 @@
             this.Subtraction.TabIndex = 43;
             this.Subtraction.Text = "-";
             this.Subtraction.UseVisualStyleBackColor = true;
+            this.Subtraction.Click += new System.EventHandler(this.Subtraction_Click);
             // 
             // Addition
             // 
@@ -156,6 +162,7 @@
             this.Addition.TabIndex = 42;
             this.Addition.Text = "+";
             this.Addition.UseVisualStyleBackColor = true;
+            this.Addition.Click += new System.EventHandler(this.Addition_Click);
             // 
             // CleanAll
             // 
@@ -166,6 +173,7 @@
             this.CleanAll.TabIndex = 40;
             this.CleanAll.Text = "C";
             this.CleanAll.UseVisualStyleBackColor = true;
+            this.CleanAll.Click += new System.EventHandler(this.CleanAll_Click);
             // 
             // CleanEntry
             // 
@@ -176,6 +184,7 @@
             this.CleanEntry.TabIndex = 39;
             this.CleanEntry.Text = "CE";
             this.CleanEntry.UseVisualStyleBackColor = true;
+            this.CleanEntry.Click += new System.EventHandler(this.CleanEntry_Click);
             // 
             // Equally
             // 
@@ -186,6 +195,7 @@
             this.Equally.TabIndex = 38;
             this.Equally.Text = "=";
             this.Equally.UseVisualStyleBackColor = true;
+            this.Equally.Click += new System.EventHandler(this.Equally_Click);
             // 
             // Two
             // 
@@ -196,6 +206,7 @@
             this.Two.TabIndex = 37;
             this.Two.Text = "2";
             this.Two.UseVisualStyleBackColor = true;
+            this.Two.Click += new System.EventHandler(this.Two_Click);
             // 
             // Three
             // 
@@ -206,6 +217,7 @@
             this.Three.TabIndex = 36;
             this.Three.Text = "3";
             this.Three.UseVisualStyleBackColor = true;
+            this.Three.Click += new System.EventHandler(this.Three_Click);
             // 
             // Four
             // 
@@ -216,6 +228,7 @@
             this.Four.TabIndex = 35;
             this.Four.Text = "4";
             this.Four.UseVisualStyleBackColor = true;
+            this.Four.Click += new System.EventHandler(this.Four_Click);
             // 
             // Five
             // 
@@ -226,6 +239,7 @@
             this.Five.TabIndex = 34;
             this.Five.Text = "5";
             this.Five.UseVisualStyleBackColor = true;
+            this.Five.Click += new System.EventHandler(this.Five_Click);
             // 
             // Six
             // 
@@ -236,6 +250,7 @@
             this.Six.TabIndex = 33;
             this.Six.Text = "6";
             this.Six.UseVisualStyleBackColor = true;
+            this.Six.Click += new System.EventHandler(this.Six_Click);
             // 
             // Zero
             // 
@@ -246,6 +261,7 @@
             this.Zero.TabIndex = 32;
             this.Zero.Text = "0";
             this.Zero.UseVisualStyleBackColor = true;
+            this.Zero.Click += new System.EventHandler(this.Zero_Click);
             // 
             // Seven
             // 
@@ -256,6 +272,7 @@
             this.Seven.TabIndex = 31;
             this.Seven.Text = "7";
             this.Seven.UseVisualStyleBackColor = true;
+            this.Seven.Click += new System.EventHandler(this.Seven_Click);
             // 
             // Eight
             // 
@@ -266,6 +283,7 @@
             this.Eight.TabIndex = 30;
             this.Eight.Text = "8";
             this.Eight.UseVisualStyleBackColor = true;
+            this.Eight.Click += new System.EventHandler(this.Eight_Click);
             // 
             // Nine
             // 
@@ -276,6 +294,7 @@
             this.Nine.TabIndex = 29;
             this.Nine.Text = "9";
             this.Nine.UseVisualStyleBackColor = true;
+            this.Nine.Click += new System.EventHandler(this.Nine_Click);
             // 
             // One
             // 
@@ -286,6 +305,7 @@
             this.One.TabIndex = 28;
             this.One.Text = "1";
             this.One.UseVisualStyleBackColor = true;
+            this.One.Click += new System.EventHandler(this.One_Click);
             // 
             // MainPannelLayout
             // 
@@ -362,6 +382,7 @@
             this.MemoryRead.TabIndex = 68;
             this.MemoryRead.Text = "MR";
             this.MemoryRead.UseVisualStyleBackColor = true;
+            this.MemoryRead.Click += new System.EventHandler(this.MemoryRead_Click);
             // 
             // MemoryClean
             // 
@@ -372,6 +393,7 @@
             this.MemoryClean.TabIndex = 67;
             this.MemoryClean.Text = "MC";
             this.MemoryClean.UseVisualStyleBackColor = true;
+            this.MemoryClean.Click += new System.EventHandler(this.MemoryClean_Click);
             // 
             // CurrentSubMemory
             // 
@@ -382,6 +404,7 @@
             this.CurrentSubMemory.TabIndex = 66;
             this.CurrentSubMemory.Text = "M-";
             this.CurrentSubMemory.UseVisualStyleBackColor = true;
+            this.CurrentSubMemory.Click += new System.EventHandler(this.CurrentSubMemory_Click);
             // 
             // CurrentAddMemory
             // 
@@ -392,6 +415,7 @@
             this.CurrentAddMemory.TabIndex = 65;
             this.CurrentAddMemory.Text = "M+";
             this.CurrentAddMemory.UseVisualStyleBackColor = true;
+            this.CurrentAddMemory.Click += new System.EventHandler(this.CurrentAddMemory_Click);
             // 
             // Tangent
             // 
@@ -402,6 +426,7 @@
             this.Tangent.TabIndex = 57;
             this.Tangent.Text = "TG";
             this.Tangent.UseVisualStyleBackColor = true;
+            this.Tangent.Click += new System.EventHandler(this.Tangent_Click);
             // 
             // Cotangent
             // 
@@ -412,6 +437,7 @@
             this.Cotangent.TabIndex = 58;
             this.Cotangent.Text = "CTG";
             this.Cotangent.UseVisualStyleBackColor = true;
+            this.Cotangent.Click += new System.EventHandler(this.Cotangent_Click);
             // 
             // Sinus
             // 
@@ -422,6 +448,7 @@
             this.Sinus.TabIndex = 59;
             this.Sinus.Text = "SIN";
             this.Sinus.UseVisualStyleBackColor = true;
+            this.Sinus.Click += new System.EventHandler(this.Sinus_Click);
             // 
             // Memory_Add_Remove
             // 
@@ -433,6 +460,7 @@
             this.Memory_Add_Remove.Text = "+/-";
             this.Memory_Add_Remove.UseVisualStyleBackColor = true;
             this.Memory_Add_Remove.Click += new System.EventHandler(this.button10_Click);
+            //this.Memory_Add_Remove.Click += new System.EventHandler(this.MemoryAddRemove_Click);
             // 
             // SQRT
             // 
@@ -443,6 +471,7 @@
             this.SQRT.TabIndex = 55;
             this.SQRT.Text = "SQRT";
             this.SQRT.UseVisualStyleBackColor = true;
+            this.SQRT.Click += new System.EventHandler(this.SQRT_Click);
             // 
             // Power
             // 
@@ -453,6 +482,7 @@
             this.Power.TabIndex = 60;
             this.Power.Text = "x^2";
             this.Power.UseVisualStyleBackColor = true;
+            this.Power.Click += new System.EventHandler(this.Power_Click);
             // 
             // Cosinus
             // 
@@ -463,6 +493,7 @@
             this.Cosinus.TabIndex = 56;
             this.Cosinus.Text = "COS";
             this.Cosinus.UseVisualStyleBackColor = true;
+            this.Cosinus.Click += new System.EventHandler(this.Cosinus_Click);
             // 
             // NPower
             // 
@@ -473,6 +504,7 @@
             this.NPower.TabIndex = 61;
             this.NPower.Text = "x^n";
             this.NPower.UseVisualStyleBackColor = true;
+            this.NPower.Click += new System.EventHandler(this.NPower_Click);
             // 
             // NSQRT
             // 
@@ -483,6 +515,7 @@
             this.NSQRT.TabIndex = 62;
             this.NSQRT.Text = "NSQRT";
             this.NSQRT.UseVisualStyleBackColor = true;
+            this.NSQRT.Click += new System.EventHandler(this.NSQRT_Click);
             // 
             // NaturalLogarithm
             // 
@@ -493,6 +526,7 @@
             this.NaturalLogarithm.TabIndex = 63;
             this.NaturalLogarithm.Text = "LN";
             this.NaturalLogarithm.UseVisualStyleBackColor = true;
+            this.NaturalLogarithm.Click += new System.EventHandler(this.NaturalLogarithm_Click);
             // 
             // DecimalLOgarifm
             // 
@@ -503,6 +537,7 @@
             this.DecimalLOgarifm.TabIndex = 62;
             this.DecimalLOgarifm.Text = "LOG";
             this.DecimalLOgarifm.UseVisualStyleBackColor = true;
+            this.DecimalLOgarifm.Click += new System.EventHandler(this.DecimalLogarifm_Click);
             // 
             // ClothingBracket
             // 
@@ -513,6 +548,7 @@
             this.ClothingBracket.TabIndex = 69;
             this.ClothingBracket.Text = ")";
             this.ClothingBracket.UseVisualStyleBackColor = true;
+            this.ClothingBracket.Click += new System.EventHandler(this.ClothingBracket_Click);
             // 
             // OpenningBracket
             // 
@@ -523,6 +559,7 @@
             this.OpenningBracket.TabIndex = 73;
             this.OpenningBracket.Text = "(";
             this.OpenningBracket.UseVisualStyleBackColor = true;
+            this.OpenningBracket.Click += new System.EventHandler(this.OpenningBracket_Click);
             // 
             // Factorial
             // 
@@ -533,6 +570,7 @@
             this.Factorial.TabIndex = 75;
             this.Factorial.Text = "N!";
             this.Factorial.UseVisualStyleBackColor = true;
+            this.Factorial.Click += new System.EventHandler(this.Factorial_Click);
             // 
             // NumberOfPI
             // 
@@ -544,6 +582,7 @@
             this.NumberOfPI.TabIndex = 76;
             this.NumberOfPI.Text = "PI";
             this.NumberOfPI.UseVisualStyleBackColor = true;
+            this.NumberOfPI.Click += new System.EventHandler(this.PI_Click);
             // 
             // label1
             // 

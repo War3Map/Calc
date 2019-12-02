@@ -10,7 +10,7 @@ namespace Calc.Functionality
     {
 
         void Show();
-        object GetData();
+        (string, string) GetData();
         void UpdateData(object data);
     }
 }
