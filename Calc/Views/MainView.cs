@@ -17,9 +17,9 @@ namespace Calc
 {
     public partial class MainView : Form, IView
     {
-        CalcPresenter presenter;
-        (string, string) operatorAndOperand;
-        private string Operation { get; set; }
+        IPresenter presenter;
+        //(string, string) operatorAndOperand;
+       // private string Operation { get; set; }
 
         public MainView()
         {
@@ -29,7 +29,31 @@ namespace Calc
             InitializeComponent();
         }
 
-        private void One_Click(object sender, EventArgs e)
+        private void DisplayInput(object sender, EventArgs e)
+        {
+            MainDisplay.Text += (sender as Button). Text;
+        }
+
+        private void OperationCompute(object sender, EventArgs e)
+        {
+          
+            string operation = (sender as Button).Text;
+            string content = MainDisplay.Text;
+            presenter.TranslateToModel("Compute",new Tuple<string,string>(operation, content));
+        }
+
+        private void SaveNumberAndOperation(object sender, EventArgs e)
+        {
+           ///
+        }
+
+        private void SaveNumber(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void One_Click(object sender, EventArgs e)       
+
         {
             MainDisplay.Text += "1";
         }
@@ -114,96 +138,97 @@ namespace Calc
             MainDisplay.Text += ",";
         }
 
-        private void SQRT_Click(object sender, EventArgs e)
-        {
-            Operation = "SQRT";
-            presenter.Compute();
-        }
-        private void NSQRT_Click(object sender, EventArgs e)
-        {
+        //Предлагаю убрать
+        //private void SQRT_Click(object sender, EventArgs e)
+        //{
+        //    Operation = "SQRT";
+        //    presenter.Compute();
+        //}
+        //private void NSQRT_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void Cosinus_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void Cosinus_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void Sinus_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void Sinus_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void Cotangent_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void Cotangent_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void Tangent_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void Tangent_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void Power_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void Power_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void NPower_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void NPower_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void DecimalLogarifm_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void DecimalLogarifm_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void NaturalLogarithm_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void NaturalLogarithm_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void Factorial_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void Factorial_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void PI_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void PI_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void CurrentAddMemory_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void CurrentAddMemory_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void CurrentSubMemory_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void CurrentSubMemory_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void MemorySave_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void MemorySave_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void MemoryClean_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void MemoryClean_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void MemoryRead_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void MemoryRead_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void MemoryAddRemove_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void MemoryAddRemove_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void CleanEntry_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text.Remove(MainDisplay.Text.Length - 1);
-        }
-        private void CleanAll_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text = null;
+        //}
+        //private void CleanEntry_Click(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text.Remove(MainDisplay.Text.Length - 1);
+        //}
+        //private void CleanAll_Click(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text = null;
 
-        }
-        private void button10_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void button10_Click(object sender, EventArgs e)
+        //{
 
-        }
-        private void Equally_Click(object sender, EventArgs e)
-        {
+        //}
+        //private void Equally_Click(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -253,14 +278,8 @@ namespace Calc
 
         }
 
-        public (string, string) GetData()
-        {
-            operatorAndOperand = (MainDisplay.Text, Operation);
-            return operatorAndOperand;
-        }
-
-        public void UpdateData(object data)
-        {
+        public void UpdateView(object data)
+        {            
             MainDisplay.Text = data.ToString();
         }
     }

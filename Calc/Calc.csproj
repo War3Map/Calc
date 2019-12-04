@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Functionality\IView.cs" />
     <Compile Include="Presenters\CalcPresenter.cs" />
+    <Compile Include="Presenters\IPresenter.cs" />
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
     </Compile>

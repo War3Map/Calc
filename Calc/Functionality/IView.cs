@@ -9,8 +9,7 @@ namespace Calc.Functionality
     public interface IView
     {
 
-        void Show();
-        (string, string) GetData();
-        void UpdateData(object data);
+        void Show();    
+        void UpdateView(object data);
     }
 }

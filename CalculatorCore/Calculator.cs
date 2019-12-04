@@ -8,6 +8,12 @@ namespace CalculatorCore
 {
     public class Calculator
     {
+        public State stateOfMemory { get; set; }
+
+        public Calculator()
+        {
+            stateOfMemory = new State();
+        }
 
         public decimal PI { get; } = (decimal)Math.PI;
         public decimal Factorial(decimal number)

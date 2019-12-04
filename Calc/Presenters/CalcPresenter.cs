@@ -11,29 +11,31 @@ using Ninject;
 
 namespace Calc.Presenters
 {   
-    class CalcPresenter
+    class CalcPresenter:IPresenter
     {
         IView calcView;
-        Calculator calc;
-        State stateOfMemory;
+        Calculator calc;        
 
         public CalcPresenter(IView calcView)
         {
             this.calcView = calcView;
-            calc = new Calculator();
-            stateOfMemory = new State();
+            calc = new Calculator();            
         }
 
-        public void Compute()
-        {           
-            calcView.UpdateData(AnalyzeData(calcView.GetData()));
-        }
 
-        private object AnalyzeData((string, string) data)
+        private object AnalyzeAndCompute(object data)
         {
-            double number = double.Parse(data.Item1);
-            
-            return Choose(data.Item2, number);
+            Tuple<string, string> tuple = (Tuple<string,string>) data;
+            double number;
+
+            if (double.TryParse(tuple.Item2, out number))
+            {
+
+                string operation = tuple.Item1;
+                return SelectAndComputeOperaion(operation, number);
+            }
+            else
+                return 0;
         }
 
         private double ChangeStringToDouble(string target)
@@ -45,8 +47,9 @@ namespace Calc.Presenters
         {
             return decimal.Parse(target);
         }
-
-        private string Choose(string operation, double number)
+        
+        //TODO:Нужно добавить операции
+        private string SelectAndComputeOperaion(string operation, double number)
         {
             switch (operation)
             {
@@ -57,5 +60,15 @@ namespace Calc.Presenters
             }
         }
 
+        public void UpdateView(object data)
+        {
+            calcView.UpdateView(data);
+        }
+
+        public void TranslateToModel(string action, object data)
+        {            
+            object result = AnalyzeAndCompute(data);
+            UpdateView(result);
+        }
     }
 }
