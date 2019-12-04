@@ -42,14 +42,19 @@ namespace Calc
             presenter.TranslateToModel("Compute",new Tuple<string,string>(operation, content));
         }
 
-        private void SaveNumberAndOperation(object sender, EventArgs e)
-        {
-           ///
-        }
-
         private void SaveNumber(object sender, EventArgs e)
         {
            
+        }
+
+        private void CleanEntryClick(object sender, EventArgs e)
+        {
+            MainDisplay.Text.Remove(MainDisplay.Text.Length - 1);
+        }
+        private void CleanAllClick(object sender, EventArgs e)
+        {
+            MainDisplay.Text = null;
+
         }
 
         private void One_Click(object sender, EventArgs e)       
@@ -67,7 +72,7 @@ namespace Calc
         {
             MainDisplay.Text += "3";
         }
-
+        
         private void Four_Click(object sender, EventArgs e)
         {
             MainDisplay.Text += "4";
@@ -103,37 +108,37 @@ namespace Calc
             MainDisplay.Text += "0";
         }
 
-        private void Addition_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "+";
-        }
+        //private void Addition_Click(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "+";
+        //}
 
-        private void Subtraction_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "-";
-        }
+        //private void Subtraction_Click(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "-";
+        //}
 
-        private void Multiplication_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "*";
-        }
+        //private void Multiplication_Click(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "*";
+        //}
 
-        private void Division_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "/";
-        }
+        //private void Division_Click(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "/";
+        //}
 
-        private void OpenningBracket_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "(";
-        }
+        //private void OpenningBracket_Click(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "(";
+        //}
 
-        private void ClothingBracket_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += ")";
-        }
+        //private void ClothingBracket_Click(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += ")";
+        //}
 
-        private void Comma_Click(object sender, EventArgs e)
+        private void CommaClick(object sender, EventArgs e)
         {
             MainDisplay.Text += ",";
         }
@@ -212,15 +217,7 @@ namespace Calc
         //{
 
         //}
-        //private void CleanEntry_Click(object sender, EventArgs e)
-        //{
-        //    MainDisplay.Text.Remove(MainDisplay.Text.Length - 1);
-        //}
-        //private void CleanAll_Click(object sender, EventArgs e)
-        //{
-        //    MainDisplay.Text = null;
 
-        //}
         //private void button10_Click(object sender, EventArgs e)
         //{
 

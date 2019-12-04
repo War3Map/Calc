@@ -134,7 +134,6 @@
             this.Division.TabIndex = 45;
             this.Division.Text = "/";
             this.Division.UseVisualStyleBackColor = true;
-            this.Division.Click += new System.EventHandler(this.Division_Click);
             // 
             // Multiplication
             // 
@@ -146,7 +145,6 @@
             this.Multiplication.TabIndex = 44;
             this.Multiplication.Text = "*";
             this.Multiplication.UseVisualStyleBackColor = true;
-            this.Multiplication.Click += new System.EventHandler(this.Multiplication_Click);
             // 
             // Subtraction
             // 
@@ -158,7 +156,6 @@
             this.Subtraction.TabIndex = 43;
             this.Subtraction.Text = "-";
             this.Subtraction.UseVisualStyleBackColor = true;
-            this.Subtraction.Click += new System.EventHandler(this.Subtraction_Click);
             // 
             // Addition
             // 
@@ -170,7 +167,7 @@
             this.Addition.TabIndex = 42;
             this.Addition.Text = "+";
             this.Addition.UseVisualStyleBackColor = true;
-            this.Addition.Click += new System.EventHandler(this.Addition_Click);
+            this.Addition.Click += new System.EventHandler(this.OperationCompute);
             // 
             // CleanAll
             // 
@@ -182,7 +179,7 @@
             this.CleanAll.TabIndex = 40;
             this.CleanAll.Text = "C";
             this.CleanAll.UseVisualStyleBackColor = true;
-            
+            this.CleanAll.Click += new System.EventHandler(this.CleanAllClick);
             // 
             // CleanEntry
             // 
@@ -194,7 +191,7 @@
             this.CleanEntry.TabIndex = 39;
             this.CleanEntry.Text = "CE";
             this.CleanEntry.UseVisualStyleBackColor = true;
-            
+            this.CleanEntry.Click += new System.EventHandler(this.CleanEntryClick);
             // 
             // Equally
             // 
@@ -403,7 +400,6 @@
             this.MemoryRead.TabIndex = 68;
             this.MemoryRead.Text = "MR";
             this.MemoryRead.UseVisualStyleBackColor = true;
-            
             // 
             // MemoryClean
             // 
@@ -415,7 +411,6 @@
             this.MemoryClean.TabIndex = 67;
             this.MemoryClean.Text = "MC";
             this.MemoryClean.UseVisualStyleBackColor = true;
-           
             // 
             // CurrentSubMemory
             // 
@@ -427,7 +422,6 @@
             this.CurrentSubMemory.TabIndex = 66;
             this.CurrentSubMemory.Text = "M-";
             this.CurrentSubMemory.UseVisualStyleBackColor = true;
-          
             // 
             // CurrentAddMemory
             // 
@@ -439,7 +433,6 @@
             this.CurrentAddMemory.TabIndex = 65;
             this.CurrentAddMemory.Text = "M+";
             this.CurrentAddMemory.UseVisualStyleBackColor = true;
-            
             // 
             // Tangent
             // 
@@ -583,7 +576,6 @@
             this.ClothingBracket.TabIndex = 69;
             this.ClothingBracket.Text = ")";
             this.ClothingBracket.UseVisualStyleBackColor = true;
-            this.ClothingBracket.Click += new System.EventHandler(this.ClothingBracket_Click);
             // 
             // OpenningBracket
             // 
@@ -595,7 +587,6 @@
             this.OpenningBracket.TabIndex = 73;
             this.OpenningBracket.Text = "(";
             this.OpenningBracket.UseVisualStyleBackColor = true;
-            this.OpenningBracket.Click += new System.EventHandler(this.OpenningBracket_Click);
             // 
             // Factorial
             // 

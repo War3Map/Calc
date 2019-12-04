@@ -8,11 +8,11 @@ namespace CalculatorCore
 {
     public class Calculator
     {
-        public State stateOfMemory { get; set; }
+        public State MemoryState { get; set; }
 
         public Calculator()
         {
-            stateOfMemory = new State();
+            MemoryState = new State();
         }
 
         public decimal PI { get; } = (decimal)Math.PI;
@@ -64,5 +64,67 @@ namespace CalculatorCore
         public double Tan(double angle) => Math.Tan(angle);
 
         public double Ctg(double angle) => 1 / Math.Tan(angle);
+
+        public object Compute(object data)
+        {
+            Tuple<string, string> tuple = (Tuple<string, string>)data;
+            decimal number;
+            string operation = tuple.Item1;
+
+            switch (operation)
+            {
+                case "SQRT":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return SquareRoot((double)number).ToString();
+                    }
+                    else
+                        return 0;
+                case "+":
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        MemoryState.CurrentState = number;
+                        MemoryState.SetOperation("+");
+                        return String.Empty;
+                    }
+                    else
+                        return String.Empty;
+                case "=":
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+                        return ComputeBinary(number);
+                    }
+                    else
+                        return 0;
+                default:
+                    return "999999";
+            }
+        }
+        private object ComputeBinary(decimal number)
+        {
+            switch(MemoryState.Operation)
+            {
+                case "+":
+                {
+                        //Add(decimal x, decimal y)
+                        return MemoryState.CurrentState + number;
+
+                }
+
+                default :
+                    {
+                        //Add(decimal x, decimal y)
+                        throw new NotImplementedException();
+
+                    }
+
+
+            }
+
+        }
+
     }
 }
