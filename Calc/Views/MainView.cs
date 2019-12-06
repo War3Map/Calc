@@ -18,25 +18,23 @@ namespace Calc
     public partial class MainView : Form, IView
     {
         IPresenter presenter;
-        //(string, string) operatorAndOperand;
-       // private string Operation { get; set; }
-
+        
         public MainView()
         {
             //здесь дб IoC
 
             presenter = new CalcPresenter(this);
+            //MemoryDisplay.Text = presenter.GetMemory();
             InitializeComponent();
         }
 
         private void DisplayInput(object sender, EventArgs e)
         {
-            MainDisplay.Text += (sender as Button). Text;
+            MainDisplay.Text += (sender as Button).Text;
         }
 
         private void OperationCompute(object sender, EventArgs e)
         {
-          
             string operation = (sender as Button).Text;
             string content = MainDisplay.Text;
             presenter.TranslateToModel("Compute",new Tuple<string,string>(operation, content));
@@ -44,7 +42,8 @@ namespace Calc
 
         private void SaveNumber(object sender, EventArgs e)
         {
-           
+            string content = MainDisplay.Text;
+            presenter.SetMemoryState(content);
         }
 
         private void CleanEntryClick(object sender, EventArgs e)
@@ -54,59 +53,58 @@ namespace Calc
         private void CleanAllClick(object sender, EventArgs e)
         {
             MainDisplay.Text = null;
-
         }
+        #region Убранные методы
+        //private void OneClick(object sender, EventArgs e)       
 
-        private void One_Click(object sender, EventArgs e)       
+        //{
+        //    MainDisplay.Text += "1";
+        //}
 
-        {
-            MainDisplay.Text += "1";
-        }
+        //private void TwoClick(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "2";
+        //}
 
-        private void Two_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "2";
-        }
+        //private void ThreeClick(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "3";
+        //}
 
-        private void Three_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "3";
-        }
-        
-        private void Four_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "4";
-        }
+        //private void FourClick(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "4";
+        //}
 
-        private void Five_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "5";
-        }
+        //private void FiveClick(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "5";
+        //}
 
-        private void Six_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "6";
-        }
+        //private void SixClick(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "6";
+        //}
 
-        private void Seven_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "7";
-        }
+        //private void SevenClick(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "7";
+        //}
 
-        private void Eight_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "8";
-        }
+        //private void EightClick(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "8";
+        //}
 
-        private void Nine_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "9";
-        }
+        //private void NineClick(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "9";
+        //}
 
-        private void Zero_Click(object sender, EventArgs e)
-        {
-            MainDisplay.Text += "0";
-        }
+        //private void ZeroClick(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += "0";
+        //}
 
         //private void Addition_Click(object sender, EventArgs e)
         //{
@@ -138,10 +136,10 @@ namespace Calc
         //    MainDisplay.Text += ")";
         //}
 
-        private void CommaClick(object sender, EventArgs e)
-        {
-            MainDisplay.Text += ",";
-        }
+        //private void CommaClick(object sender, EventArgs e)
+        //{
+        //    MainDisplay.Text += ",";
+        //}
 
         //Предлагаю убрать
         //private void SQRT_Click(object sender, EventArgs e)
@@ -226,14 +224,14 @@ namespace Calc
         //{
 
         //}
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        #endregion
+        private void tableLayoutPanel1Paint(object sender, PaintEventArgs e)
         {
 
         }
 
         //Корректировка ввода
-        private void MainDisplay_TextChanged(object sender, EventArgs e)
+        private void MainDisplayTextChanged(object sender, EventArgs e)
         {
             char[] allowedSymbols = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             bool isCorrectInput=false;
@@ -270,7 +268,7 @@ namespace Calc
                 MainDisplay.SelectionStart = MainDisplay.Text.Length; //курсор в конец
             }
         }
-        private void MemoryDisplay_TextChanged(object sender, EventArgs e)
+        private void MemoryDisplayTextChanged(object sender, EventArgs e)
         {
 
         }

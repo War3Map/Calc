@@ -21,27 +21,21 @@ namespace Calc.Presenters
             this.calcView = calcView;
             calc = new Calculator();            
         }
- 
-
-
-        //private double ChangeStringToDouble(string target)
-        //{
-        //    return double.Parse(target);
-        //}
-
-        //private decimal ChangeStringToDecimal(string target)
-        //{
-        //    return decimal.Parse(target);
-        //}
         
-        
-
-
         public void UpdateView(object data)
         {
             calcView.UpdateView(data);
         }
 
+        public void SetMemoryState(string number)
+        {
+            calc.MemoryState.CurrentState = decimal.Parse(number);
+        }
+        // Ищу способ проверить на null не используя тип decimal?
+        //public string GetMemory()
+        //{
+        //    return calc.MemoryState.CurrentState.ToString();
+        //}
         public void TranslateToModel(string action, object data)
         {            
             object result = calc.Compute(data);

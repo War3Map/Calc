@@ -18,7 +18,7 @@ namespace CalculatorCore
         public decimal PI { get; } = (decimal)Math.PI;
         public decimal Factorial(decimal number)
         {
-            if (number < 0) return 0;//не хотелось чтобы калькулятор ломался  // Э* Тут по идее тоже, надо выдать юзеру сообщение, что так нельзя сделать
+            if (number < 0) return 0;
             else if (number == 0) return 1;
             else
             {
@@ -30,7 +30,7 @@ namespace CalculatorCore
         {
             throw new NotImplementedException();
         }
-
+        
         public decimal ToRadian(decimal degree) => degree * PI / 180;
 
         public decimal ToDegree(decimal radian) => radian * 180 / PI;
@@ -46,16 +46,18 @@ namespace CalculatorCore
         public decimal Div(decimal x, decimal y) => x / y;
 
         public decimal SquaredNumber(decimal x) => x * x;
-        //Тут поменял возвращаемое значение и аргументы метода на double, геометрию на decimal не переведем
-        //Быстрее родного алгоритма Pow, пока не получилось сделать, почему ты решил, что он медленно работает?
-        //Тебе удовалось сделать быстрее?
-        public double Pow(double number, double power) => Math.Pow(number, power);
+
+        public double Pow(double number) => number * number;
+
+        public double NPow(double number, double power) => Math.Pow(number, power);
 
         public double SquareRoot(double number) => Math.Sqrt(number);
 
         public double Root(double number, double power) => Math.Pow(number, 1 / power);
         
-        public double Log(double number) => Math.Log(number);
+        public double NaturalLog(double number) => Math.Log(number);
+
+        public double DecimalLog(double number) => Math.Log10(number);
 
         public double Sin(double angle) => Math.Sin(angle);
 
@@ -82,12 +84,126 @@ namespace CalculatorCore
                     }
                     else
                         return 0;
+                case "Tangent":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Tan((double)number).ToString();
+                    }
+                    else
+                        return 0;
+                case "Cotangent":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Ctg((double)number).ToString();
+                    }
+                    else
+                        return 0;
+                case "Sinus":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Sin((double)number).ToString();
+                    }
+                    else
+                        return 0;
+                case "Cosinus":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Cos((double)number).ToString();
+                    }
+                    else
+                        return 0;
+                case "Power":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Pow((double)number).ToString();
+                    }
+                    else
+                        return 0;
+                case "NPower":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+                        MemoryState.CurrentState = number;
+                        MemoryState.SetOperation(tuple.Item1);
+                        return String.Empty;
+                    }
+                    else
+                        return 0;
+                case "NaturalLogarithm":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return NaturalLog((double)number).ToString();
+                    }
+                    else
+                        return 0;
+                case "DecimalLOgarifm":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return DecimalLog((double)number).ToString();
+                    }
+                    else
+                        return 0;
+                case "Factorial":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Factorial(number).ToString();
+                    }
+                    else
+                        return 0;
+                case "PI":
+                    return PI;
                 case "+":
                     if (decimal.TryParse(tuple.Item2, out number))
                     {
 
                         MemoryState.CurrentState = number;
-                        MemoryState.SetOperation("+");
+                        MemoryState.SetOperation(tuple.Item1);
+                        return String.Empty;
+                    }
+                    else
+                        return String.Empty;
+                case "-":
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        MemoryState.CurrentState = number;
+                        MemoryState.SetOperation(tuple.Item1);
+                        return String.Empty;
+                    }
+                    else
+                        return String.Empty;
+                case "*":
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        MemoryState.CurrentState = number;
+                        MemoryState.SetOperation(tuple.Item1);
+                        return String.Empty;
+                    }
+                    else
+                        return String.Empty;
+                case "/":
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        MemoryState.CurrentState = number;
+                        MemoryState.SetOperation(tuple.Item1);
                         return String.Empty;
                     }
                     else
@@ -109,22 +225,36 @@ namespace CalculatorCore
             {
                 case "+":
                 {
-                        //Add(decimal x, decimal y)
-                        return MemoryState.CurrentState + number;
+                    return Add(MemoryState.CurrentState, number);
+                    //return MemoryState.CurrentState + number;
 
+                }
+                case "-":
+                {
+                    return Sub(MemoryState.CurrentState, number);
+                    //return MemoryState.CurrentState - number;
+                }
+                case "*":
+                {
+                    return Mult(MemoryState.CurrentState, number);
+                    //return MemoryState.CurrentState * number;
+                }
+                case "/":
+                {
+                    return Div(MemoryState.CurrentState, number);
+                    //return MemoryState.CurrentState / number;
+
+                }
+                case "NPower":
+                {
+                    return NPow((double)MemoryState.CurrentState, (double)number);
                 }
 
                 default :
-                    {
-                        //Add(decimal x, decimal y)
-                        throw new NotImplementedException();
-
-                    }
-
-
+                {
+                    return String.Empty;
+                }
             }
-
         }
-
     }
 }
