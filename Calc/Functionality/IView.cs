@@ -11,5 +11,6 @@ namespace Calc.Functionality
 
         void Show();    
         void UpdateView(object data);
+        void UpdateMemoryView(object data);
     }
 }

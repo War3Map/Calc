@@ -26,16 +26,16 @@ namespace Calc.Presenters
         {
             calcView.UpdateView(data);
         }
+        public void UpdateMemoryView(object data)
+        {
+            calcView.UpdateMemoryView(data);
+        }
 
         public void SetMemoryState(string number)
         {
-            calc.MemoryState.CurrentState = decimal.Parse(number);
+            calc.MemoryState.AddToMem(decimal.Parse(number));
+            UpdateMemoryView(calc.MemoryState.PeekFromMem());
         }
-        // Ищу способ проверить на null не используя тип decimal?
-        //public string GetMemory()
-        //{
-        //    return calc.MemoryState.CurrentState.ToString();
-        //}
         public void TranslateToModel(string action, object data)
         {            
             object result = calc.Compute(data);

@@ -41,6 +41,10 @@ namespace CalculatorCore
         {
             memory.Push(number);
         }
+        public decimal PeekFromMem()
+        {
+            return memory.Peek();
+        }
         public decimal ExtractFromMem()
         { 
             return (memory.Count > 0)? memory.Pop():0;

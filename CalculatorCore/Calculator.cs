@@ -216,7 +216,7 @@ namespace CalculatorCore
                     else
                         return 0;
                 default:
-                    return "999999";
+                    return String.Empty;
             }
         }
         private object ComputeBinary(decimal number)

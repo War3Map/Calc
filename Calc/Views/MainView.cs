@@ -24,7 +24,6 @@ namespace Calc
             //здесь дб IoC
 
             presenter = new CalcPresenter(this);
-            //MemoryDisplay.Text = presenter.GetMemory();
             InitializeComponent();
         }
 
@@ -270,9 +269,13 @@ namespace Calc
         }
         private void MemoryDisplayTextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
+        public void UpdateMemoryView(object data)
+        {
+            MemoryDisplay.Text = data.ToString();
+        }
         public void UpdateView(object data)
         {            
             MainDisplay.Text = data.ToString();
