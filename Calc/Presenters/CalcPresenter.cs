@@ -11,7 +11,7 @@ using Ninject;
 
 namespace Calc.Presenters
 {   
-    class CalcPresenter:IPresenter
+    class CalcPresenter: IPresenter
     {
         IView calcView;
         Calculator calc;        
@@ -33,9 +33,27 @@ namespace Calc.Presenters
 
         public void SetMemoryState(string number)
         {
-            calc.MemoryState.AddToMem(decimal.Parse(number));
+            decimal count;
+            if(decimal.TryParse(number, out count))
+            {
+                calc.MemoryState.AddToMem(count);
+                UpdateMemoryView(calc.MemoryState.PeekFromMem());
+            } 
+        }
+
+        public void CleanMemory()
+        {
+            calc.MemoryState.ResetMemory();
+            UpdateMemoryView(String.Empty);
+        }
+
+        public void PopStateMemory()
+        {
+            decimal popNumber = calc.MemoryState.ExtractFromMem();
+            UpdateView(popNumber);
             UpdateMemoryView(calc.MemoryState.PeekFromMem());
         }
+        
         public void TranslateToModel(string action, object data)
         {            
             object result = calc.Compute(data);

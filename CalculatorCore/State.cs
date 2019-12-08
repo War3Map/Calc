@@ -16,7 +16,6 @@ namespace CalculatorCore
         {
             memory = new Stack<decimal>();
         }
-
  
         public void SetOperation(string operation)
         {
@@ -43,11 +42,11 @@ namespace CalculatorCore
         }
         public decimal PeekFromMem()
         {
-            return memory.Peek();
+            return (memory.Count > 0) ? memory.Peek() : 0;
         }
         public decimal ExtractFromMem()
         { 
-            return (memory.Count > 0)? memory.Pop():0;
+            return (memory.Count > 0) ? memory.Pop() : 0;
         }
     }
 }

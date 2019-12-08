@@ -382,6 +382,7 @@
             this.MemoryRead.TabIndex = 68;
             this.MemoryRead.Text = "MR";
             this.MemoryRead.UseVisualStyleBackColor = true;
+            this.MemoryRead.Click += new System.EventHandler(this.MemoryReadClick);
             // 
             // MemoryClean
             // 
@@ -392,6 +393,7 @@
             this.MemoryClean.TabIndex = 67;
             this.MemoryClean.Text = "MC";
             this.MemoryClean.UseVisualStyleBackColor = true;
+            this.MemoryClean.Click += new System.EventHandler(this.MemoryCleanClick);
             // 
             // CurrentSubMemory
             // 
@@ -402,6 +404,7 @@
             this.CurrentSubMemory.TabIndex = 66;
             this.CurrentSubMemory.Text = "M-";
             this.CurrentSubMemory.UseVisualStyleBackColor = true;
+            this.CurrentSubMemory.Click += new System.EventHandler(this.OperationCompute);
             // 
             // CurrentAddMemory
             // 
@@ -412,6 +415,7 @@
             this.CurrentAddMemory.TabIndex = 65;
             this.CurrentAddMemory.Text = "M+";
             this.CurrentAddMemory.UseVisualStyleBackColor = true;
+            this.CurrentAddMemory.Click += new System.EventHandler(this.OperationCompute);
             // 
             // Tangent
             // 

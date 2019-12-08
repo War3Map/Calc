@@ -11,5 +11,7 @@ namespace Calc.Presenters
     {
         void TranslateToModel(string action,object data);//передача действия модели
         void SetMemoryState(string number);//передача текущего числа в память
+        void PopStateMemory();
+        void CleanMemory();
     }
 }

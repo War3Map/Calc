@@ -45,9 +45,7 @@ namespace CalculatorCore
 
         public decimal Div(decimal x, decimal y) => x / y;
 
-        public decimal SquaredNumber(decimal x) => x * x;
-
-        public double Pow(double number) => number * number;
+        public decimal Pow(decimal number) => number * number;
 
         public double NPow(double number, double power) => Math.Pow(number, power);
 
@@ -75,6 +73,25 @@ namespace CalculatorCore
 
             switch (operation)
             {
+                case "M+":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Add(MemoryState.PeekFromMem(), number).ToString();
+                    }
+                    else
+                        return 0;
+                case "M-":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+                        decimal test = Sub(MemoryState.PeekFromMem(), number);
+                        string test2 = test.ToString();
+                        return Sub(MemoryState.PeekFromMem(), number).ToString();
+                    }
+                    else
+                        return 0;
                 case "SQRT":
 
                     if (decimal.TryParse(tuple.Item2, out number))
@@ -84,52 +101,7 @@ namespace CalculatorCore
                     }
                     else
                         return 0;
-                case "Tangent":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return Tan((double)number).ToString();
-                    }
-                    else
-                        return 0;
-                case "Cotangent":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return Ctg((double)number).ToString();
-                    }
-                    else
-                        return 0;
-                case "Sinus":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return Sin((double)number).ToString();
-                    }
-                    else
-                        return 0;
-                case "Cosinus":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return Cos((double)number).ToString();
-                    }
-                    else
-                        return 0;
-                case "Power":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return Pow((double)number).ToString();
-                    }
-                    else
-                        return 0;
-                case "NPower":
+                case "NSQRT":
 
                     if (decimal.TryParse(tuple.Item2, out number))
                     {
@@ -139,7 +111,62 @@ namespace CalculatorCore
                     }
                     else
                         return 0;
-                case "NaturalLogarithm":
+                case "TG":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Tan((double)number).ToString();
+                    }
+                    else
+                        return 0;
+                case "CTG":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Ctg((double)number).ToString();
+                    }
+                    else
+                        return 0;
+                case "SIN":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Sin((double)number).ToString();
+                    }
+                    else
+                        return 0;
+                case "COS":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Cos((double)number).ToString();
+                    }
+                    else
+                        return 0;
+                case "x^2":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Pow(number).ToString();
+                    }
+                    else
+                        return 0;
+                case "x^n":
+
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+                        MemoryState.CurrentState = number;
+                        MemoryState.SetOperation(tuple.Item1);
+                        return String.Empty;
+                    }
+                    else
+                        return 0;
+                case "LN":
 
                     if (decimal.TryParse(tuple.Item2, out number))
                     {
@@ -148,7 +175,7 @@ namespace CalculatorCore
                     }
                     else
                         return 0;
-                case "DecimalLOgarifm":
+                case "LOG":
 
                     if (decimal.TryParse(tuple.Item2, out number))
                     {
@@ -157,7 +184,7 @@ namespace CalculatorCore
                     }
                     else
                         return 0;
-                case "Factorial":
+                case "N!":
 
                     if (decimal.TryParse(tuple.Item2, out number))
                     {
@@ -245,9 +272,13 @@ namespace CalculatorCore
                     //return MemoryState.CurrentState / number;
 
                 }
-                case "NPower":
+                case "x^n":
                 {
                     return NPow((double)MemoryState.CurrentState, (double)number);
+                }
+                case "NSQRT":
+                {
+                    return Root((double)MemoryState.CurrentState, (double)number);
                 }
 
                 default :

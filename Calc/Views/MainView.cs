@@ -44,10 +44,23 @@ namespace Calc
             string content = MainDisplay.Text;
             presenter.SetMemoryState(content);
         }
+        private void MemoryCleanClick(object sender, EventArgs e)
+        {
+            presenter.CleanMemory();
+        }
+
+        private void MemoryReadClick(object sender, EventArgs e)
+        {
+            presenter.PopStateMemory();
+        }
 
         private void CleanEntryClick(object sender, EventArgs e)
         {
-            MainDisplay.Text.Remove(MainDisplay.Text.Length - 1);
+            if(MainDisplay.Text.Length > 0)
+            {
+                string newText = MainDisplay.Text.Remove(MainDisplay.Text.Length - 1);
+                MainDisplay.Text = newText;
+            }       
         }
         private void CleanAllClick(object sender, EventArgs e)
         {
@@ -230,6 +243,7 @@ namespace Calc
         }
 
         //Корректировка ввода
+        //Тут баг, он не позволяет выводить отрицательные числа на главный дисплей.
         private void MainDisplayTextChanged(object sender, EventArgs e)
         {
             char[] allowedSymbols = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
@@ -277,7 +291,7 @@ namespace Calc
             MemoryDisplay.Text = data.ToString();
         }
         public void UpdateView(object data)
-        {            
+        {   
             MainDisplay.Text = data.ToString();
         }
     }
