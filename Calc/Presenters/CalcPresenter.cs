@@ -36,22 +36,22 @@ namespace Calc.Presenters
             decimal count;
             if(decimal.TryParse(number, out count))
             {
-                calc.MemoryState.AddToMem(count);
-                UpdateMemoryView(calc.MemoryState.PeekFromMem());
+                calc.AddToMem(count);
+                UpdateMemoryView(calc.PeekFromMem());
             } 
         }
 
         public void CleanMemory()
         {
-            calc.MemoryState.ResetMemory();
+            calc.ResetMemory();
             UpdateMemoryView(String.Empty);
         }
 
         public void PopStateMemory()
         {
-            decimal popNumber = calc.MemoryState.ExtractFromMem();
+            decimal popNumber = calc.ExtractFromMem();
             UpdateView(popNumber);
-            UpdateMemoryView(calc.MemoryState.PeekFromMem());
+            UpdateMemoryView(calc.PeekFromMem());
         }
         
         public void TranslateToModel(string action, object data)

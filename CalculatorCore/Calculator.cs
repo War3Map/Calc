@@ -8,7 +8,7 @@ namespace CalculatorCore
 {
     public class Calculator
     {
-        public State MemoryState { get; set; }
+        private State MemoryState { get; set; }
 
         public Calculator()
         {
@@ -34,6 +34,26 @@ namespace CalculatorCore
         public decimal ToRadian(decimal degree) => degree * PI / 180;
 
         public decimal ToDegree(decimal radian) => radian * 180 / PI;
+
+        public void AddToMem(decimal number)
+        {
+            MemoryState.AddToMem(number);
+        }
+
+        public object PeekFromMem()
+        {
+            return MemoryState.PeekFromMem();
+        }
+
+        public void ResetMemory()
+        {
+            MemoryState.ResetMemory();
+        }
+
+        public decimal ExtractFromMem()
+        {
+            return MemoryState.ExtractFromMem();
+        }
 
         public decimal ToPercent(decimal number, decimal percent) => number / 100 * percent;
 
@@ -70,7 +90,10 @@ namespace CalculatorCore
             Tuple<string, string> tuple = (Tuple<string, string>)data;
             decimal number;
             string operation = tuple.Item1;
-
+            //TODO: Сократить код
+            //Можно сделать словарь с ключом операция
+            //Словарь<string operation, Func<decimal,string> operationResult >
+            
             switch (operation)
             {
                 case "M+":
@@ -205,6 +228,14 @@ namespace CalculatorCore
                     }
                     else
                         return String.Empty;
+                case "+/-":
+                    if (decimal.TryParse(tuple.Item2, out number))
+                    {
+
+                        return Calculator.Negate(number);
+                    }
+                    else
+                        return String.Empty;
                 case "-":
                     if (decimal.TryParse(tuple.Item2, out number))
                     {
@@ -246,6 +277,12 @@ namespace CalculatorCore
                     return String.Empty;
             }
         }
+
+        private static object Negate(decimal number)
+        {
+            return -number;
+        }
+
         private object ComputeBinary(decimal number)
         {
             switch(MemoryState.Operation)

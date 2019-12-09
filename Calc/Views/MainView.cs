@@ -237,21 +237,19 @@ namespace Calc
 
         //}
         #endregion
-        private void tableLayoutPanel1Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+     
 
         //Корректировка ввода
         //Тут баг, он не позволяет выводить отрицательные числа на главный дисплей.
         private void MainDisplayTextChanged(object sender, EventArgs e)
         {
-            char[] allowedSymbols = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            char[] allowedSymbols = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'  };
             bool isCorrectInput=false;
             string currentText=MainDisplay.Text;
             StringBuilder correctedText = new StringBuilder();
             int inputLength = currentText.Length;
             int commasCount = 0;//число запятых
+
 
             if (inputLength > 1)
             {
@@ -270,7 +268,8 @@ namespace Calc
                     {
                         commasCount++;
                         if (commasCount == 1) isCorrectInput = true;
-                    }                    
+                    }
+                    if (currentText[i] == '-' & i == 0) isCorrectInput = true;
 
                     if (isCorrectInput)                         
                         correctedText.Append(currentText[i]);
