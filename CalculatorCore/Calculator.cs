@@ -24,16 +24,14 @@ namespace CalculatorCore
             {
                 return number * Factorial(number - 1);
             }
- 
-        }
-        public decimal Sqrt(decimal number)
-        {
-            throw new NotImplementedException();
-        }
-        
-        public decimal ToRadian(decimal degree) => degree * PI / 180;
 
+        }
+        public string TrueFactorial(decimal number) => Factorial(number).ToString();
+
+
+        public decimal ToRadian(decimal degree) => degree * PI / 180;
         public decimal ToDegree(decimal radian) => radian * 180 / PI;
+        public decimal ToPercent(decimal number, decimal percent) => number / 100 * percent;
 
         public void AddToMem(decimal number)
         {
@@ -55,35 +53,46 @@ namespace CalculatorCore
             return MemoryState.ExtractFromMem();
         }
 
-        public decimal ToPercent(decimal number, decimal percent) => number / 100 * percent;
+        //public decimal Add(decimal x, decimal y) => x + y;
+        public string Add(decimal x, decimal y) => (x + y).ToString();
 
-        public decimal Add(decimal x, decimal y) => x + y;
+        //public decimal Sub(decimal x, decimal y) => x - y;
+        public string Sub(decimal x, decimal y) => (x - y).ToString();
 
-        public decimal Sub(decimal x, decimal y) => x - y;
+        //public decimal Mult(decimal x, decimal y) => x * y;
+        public string Mult(decimal x, decimal y) => (x * y).ToString();
 
-        public decimal Mult(decimal x, decimal y) => x * y;
+        //public decimal Div(decimal x, decimal y) => x / y;
+        public string Div(decimal x, decimal y) => (x / y).ToString();
 
-        public decimal Div(decimal x, decimal y) => x / y;
-
-        public decimal Pow(decimal number) => number * number;
+        //public decimal Pow(decimal number) => number * number;
+        public string Pow(decimal number) => (number * number).ToString();
 
         public double NPow(double number, double power) => Math.Pow(number, power);
 
-        public double SquareRoot(double number) => Math.Sqrt(number);
-
+        //public double SquareRoot(double number) => Math.Sqrt(number);
+        public string SquareRoot(decimal number) => Math.Sqrt((double)number).ToString();
         public double Root(double number, double power) => Math.Pow(number, 1 / power);
         
-        public double NaturalLog(double number) => Math.Log(number);
+        //public double NaturalLog(double number) => Math.Log(number);
+        public string NaturalLog(decimal number) => Math.Log((double)number).ToString();
 
-        public double DecimalLog(double number) => Math.Log10(number);
+        //public double DecimalLog(double number) => Math.Log10(number);
+        public string DecimalLog(decimal number) => Math.Log10((double)number).ToString();
 
-        public double Sin(double angle) => Math.Sin(angle);
+        //public double Sin(double angle) => Math.Sin(angle);
+        public string Sin(decimal angle) => Math.Sin((double)angle).ToString();
 
-        public double Cos(double angle) => Math.Cos(angle);
+        //public double Cos(double angle) => Math.Cos(angle);
+        public string Cos(decimal angle) => Math.Cos((double)angle).ToString();
 
-        public double Tan(double angle) => Math.Tan(angle);
+        //public double Tan(double angle) => Math.Tan(angle);
+        public string Tan(decimal angle) => Math.Tan((double)angle).ToString();
 
-        public double Ctg(double angle) => 1 / Math.Tan(angle);
+        //public double Ctg(double angle) => 1 / Math.Tan(angle);
+        public string Ctg(decimal angle) => (1 / Math.Tan((double)angle)).ToString();
+
+
 
         public object Compute(object data)
         {
@@ -93,188 +102,211 @@ namespace CalculatorCore
             //TODO: Сократить код
             //Можно сделать словарь с ключом операция
             //Словарь<string operation, Func<decimal,string> operationResult >
+            decimal.TryParse(tuple.Item2, out number); //Подумать как красиво сделать относительно всех, if на все в крайнем случае
             
-            switch (operation)
+            Dictionary<string, Func<decimal, string>> computeDictiounary = new Dictionary<string, Func<decimal, string>>
             {
-                case "M+":
+                ["SQRT"] = new Func<decimal, string>(SquareRoot),
+                ["TG"] = new Func<decimal, string>(Tan),
+                ["CTG"] = new Func<decimal, string>(Ctg),
+                ["SIN"] = new Func<decimal, string>(Sin),
+                ["x^2"] = new Func<decimal, string>(Pow),
+                ["COS"] = new Func<decimal, string>(Cos),
+                ["LN"] = new Func<decimal, string>(NaturalLog),
+                ["LOG"] = new Func<decimal, string>(DecimalLog), //Нашел баг, если передаваемое число крайне мало, то может вывести просто "-"
+                ["N!"] = new Func<decimal, string>(TrueFactorial)
+                //Нужно доделать PI, нормально сделать Factorial, решить как поступить с бинарными операциями
+            };
 
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
+            if(computeDictiounary.ContainsKey(operation))
+            {
+                return computeDictiounary[operation].Invoke(number);
+            }
+            else
+            {
+                switch (operation)
+                {
+                    case "M+":
 
-                        return Add(MemoryState.PeekFromMem(), number).ToString();
-                    }
-                    else
-                        return 0;
-                case "M-":
+                        if (decimal.TryParse(tuple.Item2, out number))
+                        {
+                            return Add(MemoryState.PeekFromMem(), number).ToString();
+                        }
+                        else
+                            return 0;
+                    case "M-":
 
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-                        decimal test = Sub(MemoryState.PeekFromMem(), number);
-                        string test2 = test.ToString();
-                        return Sub(MemoryState.PeekFromMem(), number).ToString();
-                    }
-                    else
-                        return 0;
-                case "SQRT":
+                        if (decimal.TryParse(tuple.Item2, out number))
+                        {
+                            return Sub(MemoryState.PeekFromMem(), number).ToString();
+                        }
+                        else
+                            return 0;
+                    case "PI":
+                        return PI;
+                    #region Закоменчена старая реализация унарных операций на время тестов словаря
+                    //case "SQRT":
 
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
+                    //    if (decimal.TryParse(tuple.Item2, out number))
+                    //    {
 
-                        return SquareRoot((double)number).ToString();
-                    }
-                    else
-                        return 0;
-                case "NSQRT":
+                    //        return SquareRoot((double)number).ToString();
+                    //    }
+                    //    else
+                    //        return 0;
 
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-                        MemoryState.CurrentState = number;
-                        MemoryState.SetOperation(tuple.Item1);
+                    //case "TG":
+
+                    //    if (decimal.TryParse(tuple.Item2, out number))
+                    //    {
+
+                    //        return Tan((double)number).ToString();
+                    //    }
+                    //    else
+                    //        return 0;
+                    //case "CTG":
+
+                    //    if (decimal.TryParse(tuple.Item2, out number))
+                    //    {
+
+                    //        return Ctg((double)number).ToString();
+                    //    }
+                    //    else
+                    //        return 0;
+                    //case "SIN":
+
+                    //    if (decimal.TryParse(tuple.Item2, out number))
+                    //    {
+
+                    //        return Sin((double)number).ToString();
+                    //    }
+                    //    else
+                    //        return 0;
+                    //case "COS":
+
+                    //    if (decimal.TryParse(tuple.Item2, out number))
+                    //    {
+
+                    //        return Cos((double)number).ToString();
+                    //    }
+                    //    else
+                    //        return 0;
+                    //case "x^2":
+
+                    //    if (decimal.TryParse(tuple.Item2, out number))
+                    //    {
+
+                    //        return Pow(number).ToString();
+                    //    }
+                    //    else
+                    //        return 0;
+
+                    //case "LN":
+
+                    //    if (decimal.TryParse(tuple.Item2, out number))
+                    //    {
+
+                    //        return NaturalLog((double)number).ToString();
+                    //    }
+                    //    else
+                    //        return 0;
+                    //case "LOG":
+
+                    //    if (decimal.TryParse(tuple.Item2, out number))
+                    //    {
+
+                    //        return DecimalLog((double)number).ToString();
+                    //    }
+                    //    else
+                    //        return 0;
+                    //case "N!":
+
+                    //    if (decimal.TryParse(tuple.Item2, out number))
+                    //    {
+
+                    //        return Factorial(number).ToString();
+                    //    }
+                    //    else
+                    //        return 0;
+                    #endregion
+                    case "NSQRT":
+
+                        if (decimal.TryParse(tuple.Item2, out number))
+                        {
+                            MemoryState.CurrentState = number;
+                            MemoryState.SetOperation(tuple.Item1);
+                            return String.Empty;
+                        }
+                        else
+                            return 0;
+                    case "x^n":
+
+                        if (decimal.TryParse(tuple.Item2, out number))
+                        {
+                            MemoryState.CurrentState = number;
+                            MemoryState.SetOperation(tuple.Item1);
+                            return String.Empty;
+                        }
+                        else
+                            return 0;
+                    case "+":
+                        if (decimal.TryParse(tuple.Item2, out number))
+                        {
+
+                            MemoryState.CurrentState = number;
+                            MemoryState.SetOperation(tuple.Item1);
+                            return String.Empty;
+                        }
+                        else
+                            return String.Empty;
+                    case "+/-":
+                        if (decimal.TryParse(tuple.Item2, out number))
+                        {
+
+                            return Calculator.Negate(number);
+                        }
+                        else
+                            return String.Empty;
+                    case "-":
+                        if (decimal.TryParse(tuple.Item2, out number))
+                        {
+
+                            MemoryState.CurrentState = number;
+                            MemoryState.SetOperation(tuple.Item1);
+                            return String.Empty;
+                        }
+                        else
+                            return String.Empty;
+                    case "*":
+                        if (decimal.TryParse(tuple.Item2, out number))
+                        {
+
+                            MemoryState.CurrentState = number;
+                            MemoryState.SetOperation(tuple.Item1);
+                            return String.Empty;
+                        }
+                        else
+                            return String.Empty;
+                    case "/":
+                        if (decimal.TryParse(tuple.Item2, out number))
+                        {
+
+                            MemoryState.CurrentState = number;
+                            MemoryState.SetOperation(tuple.Item1);
+                            return String.Empty;
+                        }
+                        else
+                            return String.Empty;
+                    case "=":
+                        if (decimal.TryParse(tuple.Item2, out number))
+                        {
+                            return ComputeBinary(number);
+                        }
+                        else
+                            return 0;
+                    default:
                         return String.Empty;
-                    }
-                    else
-                        return 0;
-                case "TG":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return Tan((double)number).ToString();
-                    }
-                    else
-                        return 0;
-                case "CTG":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return Ctg((double)number).ToString();
-                    }
-                    else
-                        return 0;
-                case "SIN":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return Sin((double)number).ToString();
-                    }
-                    else
-                        return 0;
-                case "COS":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return Cos((double)number).ToString();
-                    }
-                    else
-                        return 0;
-                case "x^2":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return Pow(number).ToString();
-                    }
-                    else
-                        return 0;
-                case "x^n":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-                        MemoryState.CurrentState = number;
-                        MemoryState.SetOperation(tuple.Item1);
-                        return String.Empty;
-                    }
-                    else
-                        return 0;
-                case "LN":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return NaturalLog((double)number).ToString();
-                    }
-                    else
-                        return 0;
-                case "LOG":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return DecimalLog((double)number).ToString();
-                    }
-                    else
-                        return 0;
-                case "N!":
-
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return Factorial(number).ToString();
-                    }
-                    else
-                        return 0;
-                case "PI":
-                    return PI;
-                case "+":
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        MemoryState.CurrentState = number;
-                        MemoryState.SetOperation(tuple.Item1);
-                        return String.Empty;
-                    }
-                    else
-                        return String.Empty;
-                case "+/-":
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        return Calculator.Negate(number);
-                    }
-                    else
-                        return String.Empty;
-                case "-":
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        MemoryState.CurrentState = number;
-                        MemoryState.SetOperation(tuple.Item1);
-                        return String.Empty;
-                    }
-                    else
-                        return String.Empty;
-                case "*":
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        MemoryState.CurrentState = number;
-                        MemoryState.SetOperation(tuple.Item1);
-                        return String.Empty;
-                    }
-                    else
-                        return String.Empty;
-                case "/":
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-
-                        MemoryState.CurrentState = number;
-                        MemoryState.SetOperation(tuple.Item1);
-                        return String.Empty;
-                    }
-                    else
-                        return String.Empty;
-                case "=":
-                    if (decimal.TryParse(tuple.Item2, out number))
-                    {
-                        return ComputeBinary(number);
-                    }
-                    else
-                        return 0;
-                default:
-                    return String.Empty;
+                }
             }
         }
 
@@ -290,24 +322,18 @@ namespace CalculatorCore
                 case "+":
                 {
                     return Add(MemoryState.CurrentState, number);
-                    //return MemoryState.CurrentState + number;
-
                 }
                 case "-":
                 {
                     return Sub(MemoryState.CurrentState, number);
-                    //return MemoryState.CurrentState - number;
                 }
                 case "*":
                 {
                     return Mult(MemoryState.CurrentState, number);
-                    //return MemoryState.CurrentState * number;
                 }
                 case "/":
                 {
                     return Div(MemoryState.CurrentState, number);
-                    //return MemoryState.CurrentState / number;
-
                 }
                 case "x^n":
                 {
