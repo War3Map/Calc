@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ninject;
+using Ninject.Parameters;
 using Calc.Functionality;
 using Calc.Presenters;
 
@@ -22,14 +23,10 @@ namespace Calc
 
             IKernel kernel = new StandardKernel();
             //забиндим всё
-            kernel.Bind<IView>().To<MainView>();
-            kernel.Bind<IPresenter>().To<CalcPresenter>();
-
-
-
+            kernel.Bind<IView>().To<MainView>().WithConstructorArgument("kernel",kernel); 
             //здесь дб IoC
-           // Application.Run(kernel.Get<MainView>(kernel));
-            Application.Run(new MainView(kernel));
+            Application.Run(kernel.Get<MainView>());
+            //Application.Run(new MainView(kernel));
 
 
         }

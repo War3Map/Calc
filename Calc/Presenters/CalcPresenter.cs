@@ -7,7 +7,7 @@ using CalculatorCore;
 using Calc.Functionality;
 using Ninject.Modules;
 using Ninject;
-
+using Ninject.Parameters;
 
 namespace Calc.Presenters
 {   

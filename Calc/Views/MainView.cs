@@ -11,7 +11,7 @@ using Calc.Presenters;
 using Calc.Functionality;
 using Ninject.Modules;
 using Ninject;
-
+using Ninject.Parameters;
 
 namespace Calc
 {
@@ -22,8 +22,12 @@ namespace Calc
         public MainView(IKernel kernel)
         {
             //здесь дб IoC
+            kernel.Bind<IPresenter>().To<CalcPresenter>()
+                .WithConstructorArgument("kernel",kernel)
+                .WithConstructorArgument("calcView", this);
 
-            presenter = kernel.Get<CalcPresenter>();
+            presenter = kernel.Get<IPresenter>();
+            //presenter = new CalcPresenter(kernel, this);
             InitializeComponent();
         }
 
