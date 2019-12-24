@@ -14,10 +14,13 @@ namespace Calc.Presenters
     class CalcPresenter: IPresenter
     {
         IView calcView;
+
+        //TODO: заменить на интерфейс и взаиммодействовать через него
         Calculator calc;        
 
-        public CalcPresenter(IView calcView)
+        public CalcPresenter(IKernel kernel, IView calcView)
         {
+            
             this.calcView = calcView;
             calc = new Calculator();            
         }

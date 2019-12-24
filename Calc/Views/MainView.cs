@@ -19,11 +19,11 @@ namespace Calc
     {
         IPresenter presenter;
         
-        public MainView()
+        public MainView(IKernel kernel)
         {
             //здесь дб IoC
 
-            presenter = new CalcPresenter(this);
+            presenter = kernel.Get<CalcPresenter>();
             InitializeComponent();
         }
 
